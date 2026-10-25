@@ -1,28 +1,50 @@
 
+import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-print("Starting OmniSight automation...")
+def run_automation():
+    driver = None
 
-driver = None
+    try:
+        print("Starting OmniSight automation...")
 
-try:
-    driver = webdriver.Chrome()
-    driver.get("https://example.com")
+        options = Options()
+        options.add_argument("--disable-extensions")
+        options.add_argument("--no-first-run")
+        options.page_load_strategy = "eager"
 
-    heading = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.TAG_NAME, "h1"))
-    )
+        driver = webdriver.Chrome(options=options)
+        driver.set_page_load_timeout(30)
 
-    print("Website:", driver.title)
-    print("Heading:", heading.text)
-    print("Automation successful!")
+        print("Chrome browser launched")
 
-except Exception as error:
-    print("Automation failed:", error)
+        driver.get("https://example.com")
 
-finally:
-    if driver is not None:
-        driver.quit()
+        heading = WebDriverWait(driver, 15).until(
+            EC.visibility_of_element_located(
+                (By.TAG_NAME, "h1")
+            )
+        )
+
+        print("Website:", driver.title)
+        print("Heading:", heading.text)
+        print("Automation completed successfully!")
+
+        time.sleep(3)
+
+    except Exception as error:
+        print("Automation failed:", error)
+
+    finally:
+        if driver is not None:
+            try:
+                driver.quit()
+            except Exception:
+                pass
+
+if __name__ == "__main__":
+    run_automation()
