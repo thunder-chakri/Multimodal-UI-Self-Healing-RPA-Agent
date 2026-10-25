@@ -85,4 +85,49 @@ The assignment letter requests:
 4. Implement candidate element matching and safe recovery.
 5. Record outcomes and prepare a final demo.
 
+<!-- Keval's Part of Documentation -->
+## RPA Automation library installation:
+```bash
+uv pip install -r requirements.txt
+```
 
+#### OR
+
+```bash
+pip install -r requirements.txt
+```
+
+- Install Chromium, firefox or any web library for the output.
+```bash
+uv playwright install chromium
+```
+
+##### OR
+
+```bash
+playwright install chromium
+```
+
+## Running the script for the Playwrite automation:
+- Here I created the saucedemo order demo automation the use that webpage and below mention work is doing.
+- 1. First login in the web with login and password.
+- 2. then go to Order section and fetch the order and make an order.
+- 3. After that it's doing the final checkout.
+- 4. then again run that for the Mobile view also.
+- 5. Same process run for the mobile view.
+
+### How to run and activate rpa automation:
+```bash
+pytest --browser chromium --headed --slowmo 500 -v -s
+```
+- It can run Slowly on web so QA or any developer can see what happens in the automation.
+
+
+### RPA automation working directory:
+- In src/multimodel-UI-self-healing-rpa-agent there is two folders are there.
+- 1. pages
+- 2. test example
+- 3. conftests.py
+
+### RPA automation audit-log:
+- after compliting the script run it logs the files in this audit_logs folder with video folder, some screenshots and json data for tracking this screenshots.

@@ -4,6 +4,8 @@
 
 # Browser automation
 playwright>=1.48,<2.0
+pytest==8.3.4
+pytest-playwright==0.6.2
 
 # LLM / API integration
 openai>=1.50,<3.0
