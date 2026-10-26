@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title>OmniSight Dashboard</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>OmniSight</h2>
+        <p>AI Automation Platform</p>
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="#results">Automation Results</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1>Automation Dashboard</h1>
+            <p>Multimodal UI Self-Healing & RPA Agent</p>
+        </header>
+
+        <section class="cards">
+            <div class="card">
+                <h3>Automation Engine</h3>
+                <p>Selenium Browser Automation</p>
+            </div>
+            <div class="card">
+                <h3>Self-Healing</h3>
+                <p>Fallback Locator Recovery</p>
+            </div>
+            <div class="card">
+                <h3>System Status</h3>
+                <p id="status">Ready</p>
+            </div>
+        </section>
+
+        <section class="panel" id="results">
+            <h2>Run Automation</h2>
+            <p>Test the OmniSight self-healing engine.</p>
+            <button id="runBtn">Start Automation</button>
+
+            <h3>Execution Logs</h3>
+            <pre id="logs">No automation executed yet.</pre>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

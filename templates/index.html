@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OmniSight Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            margin: 0;
+            padding: 40px;
+            color: #17243b;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px #00000012;
+        }
+        h1 { color: #2456a5; }
+        button {
+            background: #2563eb;
+            color: white;
+            padding: 14px 25px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:disabled { opacity: 0.6; }
+        pre {
+            background: #101c33;
+            color: #a5f3c5;
+            padding: 20px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OmniSight</h1>
+        <h3>Multimodal UI Self-Healing & RPA Agent</h3>
+
+        <p>Automation Status: <span id="status">Ready</span></p>
+
+        <button id="runBtn" onclick="runAutomation()">
+            Start Automation
+        </button>
+
+        <h3>Execution Logs</h3>
+        <pre id="logs">No automation executed yet.</pre>
+    </div>
+
+    <script>
+        async function runAutomation() {
+            const button = document.getElementById("runBtn");
+            const status = document.getElementById("status");
+            const logs = document.getElementById("logs");
+
+            button.disabled = true;
+            status.textContent = "Running...";
+            logs.textContent = "Starting automation...";
+
+            try {
+                const response = await fetch("/run", {
+                    method: "POST"
+                });
+                const data = await response.json();
+
+                status.textContent = data.success
+                    ? "Completed"
+                    : "Failed";
+                logs.textContent = data.logs;
+
+            } catch (error) {
+                status.textContent = "Error";
+                logs.textContent = error.message;
+            } finally {
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
